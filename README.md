@@ -1,8 +1,11 @@
 # CLR(1) Parser - Documentação
 
 Diego Preissler Arial
+
 Giovani Bruno Corrêa
+
 Henrique Corrêa de Araújo
+
 Luiz Henrique Cortez Casotti
 
 Este projeto implementa um analisador sintático CLR(1) em C.
@@ -29,7 +32,3 @@ Este projeto implementa um analisador sintático CLR(1) em C.
 ## Observações
 - Para testar diferentes gramáticas, basta modificar a função `build_grammar()` e recompilar.
 - O resultado mostrará as operações de shift, reduce e se a entrada foi aceita ou rejeitada.
-
----
-
-Projeto simples para fins didáticos e experimentação com gramáticas LR(1).
