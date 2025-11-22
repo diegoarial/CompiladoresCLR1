@@ -22,20 +22,16 @@ typedef struct {
     int n;
 } ItemSet;
 
-/* FIRST sets */
 uint64_t FIRST_sym[MAXSYM];
 int nullable[MAXSYM];
 
-/* Terminal mapping */
 int term_offset[MAXSYM];
 int term_count = 0;
 
-/* Bitset helpers */
 static inline void bs_set(uint64_t *b, int pos){ *b |= (1ULL<<pos); }
 static inline int  bs_test(uint64_t b, int pos){ return (b>>pos)&1ULL; }
 static inline void bs_or(uint64_t *a, uint64_t b){ *a |= b; }
 
-/* Assign offsets to terminals */
 void assign_terminal_offsets() {
     term_count = 0;
     for (int i=0;i<nsym;i++) {
@@ -52,7 +48,6 @@ void assign_terminal_offsets() {
     }
 }
 
-/* Compute FIRST + nullable */
 uint64_t FIRST_of_seq(int *seq, int len);
 
 void compute_nullable_and_first() {
@@ -92,7 +87,6 @@ uint64_t FIRST_of_seq(int *seq, int len) {
     return res;
 }
 
-/* Itemsets */
 ItemSet itemsets[MAXITEMSETS];
 int nitemsets = 0;
 
@@ -120,7 +114,6 @@ int itemset_equal(ItemSet *A, ItemSet *B) {
     return 1;
 }
 
-/* Closure */
 void closure(ItemSet *I) {
     int changed = 1;
     while (changed) {
@@ -165,7 +158,6 @@ void closure(ItemSet *I) {
     }
 }
 
-/* GOTO */
 ItemSet goto_op(ItemSet *I, int X) {
     ItemSet J = {NULL,0};
     for (int i=0;i<I->n;i++) {
@@ -181,7 +173,6 @@ ItemSet goto_op(ItemSet *I, int X) {
     return J;
 }
 
-/* Build canonical collection */
 void build_canonical_collection() {
     nitemsets = 0;
 
@@ -216,7 +207,6 @@ void build_canonical_collection() {
     }
 }
 
-/* ACTION/GOTO tables */
 typedef enum { ACT_NONE=0, ACT_SHIFT=1, ACT_REDUCE=2, ACT_ACCEPT=3 } ActType;
 typedef struct { ActType type; int val; } ActionCell;
 
@@ -276,7 +266,6 @@ void build_action_goto() {
     }
 }
 
-/* Parser */
 void parse_input(char **tokens, int ntok) {
     printf("\nParsing: ");
     for (int i=0;i<ntok;i++) printf("%s ", tokens[i]);
@@ -317,9 +306,8 @@ void parse_input(char **tokens, int ntok) {
     }
 }
 
-/* MAIN */
 int main() {
-    build_grammar();  // <- Gramática + tokens de teste
+    build_grammar();
 
     assign_terminal_offsets();
     compute_nullable_and_first();

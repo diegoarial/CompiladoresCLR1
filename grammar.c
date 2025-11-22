@@ -11,11 +11,9 @@ int nprod = 0;
 
 int start_sym = -1;
 
-/* Tokens de teste */
 char *test_tokens[MAXTOKS];
 int ntest_tokens = 0;
 
-/* Symbol functions */
 int sym_index_by_name(const char *name) {
     for (int i=0;i<nsym;i++)
         if (strcmp(syms[i].name,name)==0) return i;
@@ -38,7 +36,7 @@ int add_prod(int lhs, int *rhs, int rhs_len) {
     return nprod++;
 }
 
-/* CHANGE YOUR GRAMMAR HERE!! */
+/* ALTERAR GRAMÁTICA AQUI */
 
 void build_grammar() {
     nsym = 0; nprod = 0;
@@ -53,9 +51,9 @@ void build_grammar() {
     start_sym = Sprime;
 
     int rhs[10];
-    rhs[0] = L; add_prod(Sprime, rhs, 1);         // S' -> L
-    rhs[0] = L; rhs[1] = comma; rhs[2] = id; add_prod(L, rhs, 3); // L -> L , id
-    rhs[0] = id; add_prod(L, rhs, 1);            // L -> id
+    rhs[0] = L; add_prod(Sprime, rhs, 1);      
+    rhs[0] = L; rhs[1] = comma; rhs[2] = id; add_prod(L, rhs, 3);
+    rhs[0] = id; add_prod(L, rhs, 1);
 
     char *tokens[] = { "id", ",", "id", ",", "id", "$", NULL };
     for (int i=0; tokens[i]; i++) test_tokens[i] = tokens[i];
