@@ -1,4 +1,9 @@
-# CLR(1) Parser - Documentação Simples
+# CLR(1) Parser - Documentação
+
+Diego Preissler Arial
+Giovani Bruno Corrêa
+Henrique Corrêa de Araújo
+Luiz Henrique Cortez Casotti
 
 Este projeto implementa um analisador sintático CLR(1) em C.
 
